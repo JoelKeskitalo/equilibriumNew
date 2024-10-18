@@ -3,6 +3,8 @@ const dotenv = require('dotenv')
 const connectDb = require('./database/db')
 const path = require('path')
 
+const userRoutes = require('..') // placeholder
+
 dotenv.config()
 
 const app = express()
@@ -11,10 +13,14 @@ app.use(express.static('public'));
 
 connectDb();
 
-//
-// Route för att fånga allt som inte redan har processats av tidigare routes.
-// Detta för att få react-routern att fungera på klientsidan.
-// Alla andra routes ska ligga _före_ denna, dvs denna ligger alltid sist.
+
+const userRoutes = require('..') // placeholder
+app.use('/api/account/register', userRoutes) // placeholder
+
+
+
+
+
 app.get('*', (req,res) => {
     res.sendFile(path.join(__dirname, '../public/index.html'));
 });
