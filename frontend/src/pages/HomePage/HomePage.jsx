@@ -3,8 +3,19 @@ import './Homepage.scss'
 
 const HomePage = () => {
     return (
-        <div className="home-page">
+        <div className="homepage">
             <h1>Welcome to Equilibrium!</h1>
+            <p>This is a place where I gather what's important in my life to keep balance.<br />
+            Here you will find useful tools, such as:
+            </p>
+            <ul className="features-list">
+                <li>🏋️ Gym schedule and progress</li>
+                <li>🍽️ Diet plan</li>
+                <li>📝 A todo list</li>
+                <li>🧘 Meditation exercises</li>
+                <li>💭 Philosophical quotes</li>
+            </ul>
+            <button className="cta-button">Start your journey</button>
         </div>
     )
 }

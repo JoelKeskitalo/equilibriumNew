@@ -1,18 +1,79 @@
-@import '../../sass/variables';
-@import '../../sass/mixins'; 
-
 .homepage {
   text-align: center;
-  padding: $padding-base; 
+  padding: 20px; 
+  max-width: 900px;
+  margin: 0 auto;
 
   h1 {
-    font-size: $font-size-large; 
-    color: $primary-color; 
-    @include flex-column-center(column, center, center); 
+    font-size: 2.5rem;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
   }
 
   p {
-    font-size: $font-size-base; 
-    color: $secondary-color; 
+    font-size: 1.125rem;
+    font-family: Arial, sans-serif;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .features-list {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    padding: 0;
+    margin: 0 auto;
+    list-style: none;
+    gap: 1rem; 
+  }
+
+  li {
+    font-size: 1rem;
+    font-family: Arial, sans-serif;
+    color: #333;
+    background: #f9f9f9;
+    padding: 0.75rem 1rem; 
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    display: flex;
+    align-items: center; 
+    justify-content: flex-start;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: translateY(-3px); 
+    }
+
+    /* Justera ikonen och textens placering */
+    &::before {
+      content: attr(data-icon);
+      font-size: 1.5rem;
+      margin-right: 10px;
+    }
+  }
+
+  .cta-button {
+    margin-top: 2rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1.125rem;
+    font-family: Arial, sans-serif;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      background-color: #0056b3;
+      box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.3);
+    }
   }
 }
