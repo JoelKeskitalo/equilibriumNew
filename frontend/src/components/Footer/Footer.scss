@@ -1,0 +1,37 @@
+@import '../../sass/mixins';
+@import '../../sass/variables';
+
+.footer {
+    padding: 20px;
+    text-align: center;
+}
+
+ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 3rem;
+    color: white;
+}
+
+.footer-item a {
+    margin-right: 1rem;
+    text-decoration: none;
+    color: #000;
+    font-size: $font-size-base;
+    color: white;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+}

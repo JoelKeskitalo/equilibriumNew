@@ -3,6 +3,25 @@
 
 body, html {
     background-color: $primary-color;
-    margin: 0;
+    margin: 1rem;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    font-weight: normal;
+    font-style: normal;
+    cursor: pointer;
+}
+
+a:hover {
+    color: white;
+}
+
+a:visited {
+    color: inherit;
+    text-decoration: none;
 }
