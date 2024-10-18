@@ -9,11 +9,11 @@ const HomePage = () => {
             Here you will find useful tools, such as:
             </p>
             <ul className="features-list">
-                <li>🏋️ Gym schedule and progress</li>
+                <li>🏋️ Gym schedule</li>
                 <li>🍽️ Diet plan</li>
                 <li>📝 A todo list</li>
-                <li>🧘 Meditation exercises</li>
-                <li>💭 Philosophical quotes</li>
+                <li>🧘 Meditation</li>
+                <li>💭 Philosophy</li>
             </ul>
             <button className="cta-button">Start your journey</button>
         </div>
