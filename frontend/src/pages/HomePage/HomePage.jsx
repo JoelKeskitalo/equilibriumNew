@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import './Homepage.scss'
 
 const HomePage = () => {
@@ -9,13 +10,11 @@ const HomePage = () => {
             Here you will find useful tools, such as:
             </p>
             <ul className="features-list">
-                <li>🏋️ Gym schedule</li>
-                <li>🍽️ Diet plan</li>
-                <li>📝 A todo list</li>
-                <li>🧘 Meditation</li>
+                <li>🏋️ Gym and diet</li>
+                <li>📝 Todo list</li>
                 <li>💭 Philosophy</li>
             </ul>
-            <button className="cta-button">Start your journey</button>
+            <button className="cta-button"><Link to='/about'>Start your journey</Link></button>
         </div>
     )
 }
