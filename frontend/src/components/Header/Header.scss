@@ -1,0 +1,19 @@
+@import '../../sass/mixins';
+@import '../../sass/variables';
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    margin: 1rem;
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 1rem;
+
+    h1 {
+        font-family: $header-font;
+        letter-spacing: 0.5rem;
+        color: white;
+    }
+}
+
