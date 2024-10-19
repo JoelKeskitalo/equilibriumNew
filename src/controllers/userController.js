@@ -129,3 +129,30 @@ exports.loginUser = async (req, res) => {
         res.status(500).json({ error: error.message })
     }
 }
+
+exports.updateUserById = async (req, res) => {
+    try {
+        const updates = Object.keys(req.body)
+        const allowedUpdates = ['username', 'password', 'email']
+        const isValidKeys = updates.every((update) => allowedUpdates.includes(update))
+
+        if(!isValidKeys) {
+            res.status(400).json({ message: 'Missing valid key'})
+        }
+
+        const user = await User.findById(req.params.id)
+
+        updates.forEach((update) => user[update] = req.body[update])
+
+        await user.save()
+
+        res.status(200).json({
+            message: 'User updated successfully',
+            user: user
+        })
+
+
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+    }
+}
