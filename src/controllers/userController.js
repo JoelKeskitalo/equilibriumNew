@@ -1,3 +1,6 @@
+const bcrypt = require('bcrypt')
+const { v4: uuidv4 } = require('uuid')
+
 const User = require('../models/userModel')
 
 exports.createUser = async (req, res) => {
@@ -14,7 +17,16 @@ exports.createUser = async (req, res) => {
             res.status(400).json({ message: 'A username with that email already exists'})
         }
 
-        const user = new User({ username, password, email})
+
+        const userId = uuidv4()
+        const hashedPassword = await bcrypt.hash(password, 10)
+
+        const user = new User({ 
+            username,
+            password: hashedPassword,
+            email,
+            id: userId
+        })
         await user.save()
 
         res.status(201).json({ message: 'User created successfully'})
@@ -59,6 +71,6 @@ exports.deleteUser = async (req, res) => {
         })
 
     } catch (error) {
-        res.status(500).json({ error: error.message})
+        res.status(500).json({ error: error.message })
     }
 }
