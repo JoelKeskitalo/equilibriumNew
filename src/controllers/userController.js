@@ -74,3 +74,30 @@ exports.deleteUser = async (req, res) => {
         res.status(500).json({ error: error.message })
     }
 }
+
+exports.getUserById = async (req, res) => {
+    try {
+        const userId = req.params.id
+
+        if(!userId) {
+            res.status(400).json({ message: 'Please fill in the required ID'})
+        }
+
+        const user = await User.findById(userId)
+
+        if(!user) {
+            res.status(404).json({
+                message: 'Could not find the user with ID search'
+            })
+        }
+
+        res.status(200).json({
+            message: 'User found',
+            user: user
+        })
+
+
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+    }
+}
