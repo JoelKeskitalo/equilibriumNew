@@ -101,3 +101,31 @@ exports.getUserById = async (req, res) => {
         res.status(500).json({ error: error.message })
     }
 }
+
+exports.loginUser = async (req, res) => {
+    try {
+        const { username, password } = req.body
+
+        if (!username || !password) {
+            res.status(400).json({ message: 'Please fill in the required form'})
+        }
+
+        const existingUser = await User.findOne({ username })
+
+        if(!existingUser) {
+            res.status(404).json({ message: 'Username not found'})
+        }
+
+        if(existingUser.password !== password) {
+            res.status(400).json({ message: 'Invalid password'})
+        }
+
+        res.status(200).json({
+            message: 'Login successful',
+            user: username
+        })
+
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+    }
+}
