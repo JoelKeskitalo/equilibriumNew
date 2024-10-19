@@ -24,3 +24,21 @@ exports.createUser = async (req, res) => {
         res.status(500).json({ error: error.message})
     }
 }
+
+exports.getAllUsers = async (req, res) => {
+    try {
+        const allUsers = await User.find()
+
+        if(!allUsers) {
+            res.status(404).json({ message: 'No users found in the database'})
+        }
+
+        res.status(200).json({
+            message: 'Users in the database: ',
+            users: allUsers
+        })
+
+    } catch(error) {
+        res.status(500).json({ error: error.message })
+    }
+}
