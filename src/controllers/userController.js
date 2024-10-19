@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt')
 const { v4: uuidv4 } = require('uuid')
+const jwt = require('jsonwebtoken')
 
 const User = require('../models/userModel')
 
@@ -27,6 +28,7 @@ exports.createUser = async (req, res) => {
             email,
             id: userId
         })
+        
         await user.save()
 
         res.status(201).json({ message: 'User created successfully'})
@@ -55,7 +57,7 @@ exports.getAllUsers = async (req, res) => {
     }
 }
 
-exports.deleteUser = async (req, res) => {
+exports.deleteUser = async (req, res) => { // behöver uppdateras, delete by id
     try {
         const { email } = req.body
 
@@ -102,33 +104,41 @@ exports.getUserById = async (req, res) => {
     }
 }
 
+
 exports.loginUser = async (req, res) => {
     try {
         const { username, password } = req.body
 
         if (!username || !password) {
-            res.status(400).json({ message: 'Please fill in the required form'})
+            return res.status(400).json({ message: 'Please fill in the required form' })
         }
 
         const existingUser = await User.findOne({ username })
 
-        if(!existingUser) {
-            res.status(404).json({ message: 'Username not found'})
+        if (!existingUser) {
+            return res.status(404).json({ message: 'Username not found' })
         }
 
-        if(existingUser.password !== password) {
-            res.status(400).json({ message: 'Invalid password'})
+
+        const isMatch = await bcrypt.compare(password, existingUser.password)
+        if (!isMatch) {
+            return res.status(400).json({ message: 'Invalid username or password' })
         }
+
+        // Generera en JWT-token, remember!
+        const token = jwt.sign({ _id: existingUser._id }, process.env.JWT_SECRET, { expiresIn: '1h' })
 
         res.status(200).json({
             message: 'Login successful',
-            user: username
-        })
+            user: existingUser.username,
+            token: token
+        });
 
     } catch (error) {
         res.status(500).json({ error: error.message })
     }
 }
+
 
 exports.updateUserById = async (req, res) => {
     try {

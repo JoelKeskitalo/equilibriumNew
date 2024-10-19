@@ -3,7 +3,10 @@ dotenv.config()
 const express = require('express')
 const connectDb = require('./database/db')
 const path = require('path')
-const userRoutes = require('./routes/userRoutes') 
+
+const authenication = require('./middleware/authentication')
+const userRoutes = require('./routes/userRoutes')
+const todoRoutes = require('./routes/todoRoutes')
 
 
 
@@ -15,6 +18,7 @@ connectDb();
 
 
 app.use('/api/account', userRoutes)
+app.use('/api/todo', authenication, todoRoutes)
 
 
 
