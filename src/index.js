@@ -2,8 +2,7 @@ const express = require('express')
 const dotenv = require('dotenv')
 const connectDb = require('./database/db')
 const path = require('path')
-
-const userRoutes = require('..') // placeholder
+const userRoutes = require('./routes/userRoutes') 
 
 dotenv.config()
 
@@ -14,8 +13,7 @@ app.use(express.static('public'));
 connectDb();
 
 
-const userRoutes = require('..') // placeholder
-app.use('/api/account/register', userRoutes) // placeholder
+app.use('/api/account/register', userRoutes)
 
 
 
